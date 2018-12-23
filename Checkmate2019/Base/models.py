@@ -4,7 +4,6 @@ from django.core import validators
 import re
 
 class Team(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     team_name = models.CharField(max_length=25)
     password = models.CharField(max_length=20)
     score = models.IntegerField(default=0)
@@ -24,7 +23,3 @@ class Member(models.Model):
     
     def __str__(self):
         return f"{self.team} : {self.id}"
-
-
-      
-        
