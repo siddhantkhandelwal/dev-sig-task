@@ -1,4 +1,13 @@
 {% extends "Base/base.html" %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 
 {% block title %}
 Register Team
@@ -7,11 +16,11 @@ Register Team
 
 
 {% block body %}
-<form action="/sign_up/" method="post">
+<form action="/sign_up/" method="post" style="padding: 10px">
     {% csrf_token %}
-    {{ form }}
+    {% bootstrap_form form %}
     <input type="submit" value="Submit">
 </form>
 <br>
-<h5>Note : If your team has only 1 member, then leave the column for id2 blank.</h5>
+<h6>Note : If your team has only 1 member, then leave the column for id2 blank.</h6>
 {% endblock %}

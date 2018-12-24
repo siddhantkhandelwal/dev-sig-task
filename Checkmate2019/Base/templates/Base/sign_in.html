@@ -1,4 +1,13 @@
 {% extends "Base/base.html" %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 
 {% block title %}
 Sign In
@@ -6,9 +15,9 @@ Sign In
 {% endblock %}
 
 {% block body %}
-<form action="/sign_in/" method="post">
+<form action="/sign_in/" method="post" style="padding: 10px">
     {% csrf_token %}
-    {{ form }}
+    {% bootstrap_form form %}
     <input type="submit" value="Submit">
 </form>
 {% endblock %}
