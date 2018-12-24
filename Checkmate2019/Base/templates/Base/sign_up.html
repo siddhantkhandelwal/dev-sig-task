@@ -1,15 +1,17 @@
 {% extends "Base/base.html" %}
 
 {% block title %}
-Sign Up Members
+Register Team
 
 {% endblock %}
 
 
 {% block body %}
-<form action="/sign_up_Member/" method="post">
+<form action="/sign_up/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+<br>
+<h5>Note : If your team has only 1 member, then leave the column for id2 blank.</h5>
 {% endblock %}

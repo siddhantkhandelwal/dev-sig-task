@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Team, Member
+from .models import Team
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
-from .forms import TeamForm, MemberForm, LoginForm
+from .forms import Sign_up, LoginForm
 from django.http import HttpResponse
 from django.contrib import messages
 from ipware import get_client_ip
@@ -16,42 +16,25 @@ def index(request):
     return render(request, "Base/index.html", {})
 
 
-def sign_up_team(request):
+def sign_up(request):
     if request.method == 'POST':
-        form = TeamForm(request.POST)
+        form = Sign_up(request.POST)
         if form.is_valid():
             team_name = form.cleaned_data.get('team_name')
             password = form.cleaned_data.get('password')
+            id1 = form.cleaned_data.get('id1')
+            id2 = form.cleaned_data.get('id2')
             ip = get_client_ip(request)
             team = Team(team_name=team_name, password=password,
-                        ip_address=ip, score=0, puzzles_solved=0, rank=0)
+                        ip_address=ip, score=0, puzzles_solved=0, rank=0, id1=id1, id2=id2)
             team.save()
-            # flash message
+            # Something wrong here as message is not being flashed
             messages.success(request, 'Team Successfully created!!')
-            return redirect('/sign_up_Member')
+            # on user side, but on admin site
+            return redirect('/sign_in')
     else:
-        form = TeamForm()
-        return render(request, 'Base/sign_up_team.html', {'form': form})
-
-
-def sign_up_Member(request):
-    if request.method == 'POST':
-        form = MemberForm(request.POST)
-        if form.is_valid():
-            id = form.cleaned_data.get('id')
-            team_name = form.cleaned_data.get('team_name')
-            team = Team.objects.get(team_name=team_name)
-            member = Member(id=id, team=team)
-            member.save()
-            messages.success(request, 'User successfully added. ')
-            # The design needs to be modified so  that after submitting the form 2 times the user is
-            return redirect('/sign_up_Member')
-            # redirected to the login page .
-        else:
-            return HttpResponse("There was some error, please try again. ")
-    else:
-        form = MemberForm()
-        return render(request, 'Base/sign_up_Member.html', {'form': form})
+        form = Sign_up()
+        return render(request, 'Base/sign_up.html', {'form': form})
 
 
 def sign_in(request):
@@ -63,12 +46,13 @@ def sign_in(request):
             user = authenticate(
                 request, team_name=team_name, password=password)
             if user:
+                # Something wrong here as message is not being flashed
                 messages.success(request, 'Successfully logged in .')
                 # Base:game needs tom be updated after the game is completed.
                 return redirect('Base:game')
             else:
                 messages.error(
-                    request, 'Login failed. Enter Correct Details .')
+                    request, 'Login failed. Enter Correct Details .')  # Something wrong here as message is not being flashed
                 return redirect('/sign_in')
         else:
             return HttpResponse("There was some error, please try again.")
@@ -83,6 +67,7 @@ def sign_out(request):
     return HttpResponse("You have been successfully logged out. We hope that you had a great time solving the puzzles. ")
 
 
+@login_required
 def leaderboard(request):
     # Needs to be reviewed . It is not functioning properly
     Leaderboard = Team.objects.filter(rank <= 10)
