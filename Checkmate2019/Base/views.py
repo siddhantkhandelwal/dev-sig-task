@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Team
+from .models import Team, Member
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from .forms import Sign_up, LoginForm
@@ -26,11 +26,15 @@ def sign_up(request):
             id2 = form.cleaned_data.get('id2')
             ip = get_client_ip(request)
             team = Team(team_name=team_name, password=password,
-                        ip_address=ip, score=0, puzzles_solved=0, rank=0, id1=id1, id2=id2)
+                        ip_address=ip, score=0, puzzles_solved=0, rank=0)
             team.save()
-            # Something wrong here as message is not being flashed
+            member1 = Member(id=id1, team=team)
+            member1.save()
+            if id2 :
+                member2 = Member(id=id2, team=team)
+                member2.save()
+            # Something wrong here as message is not being flashed on user side, but on admin site
             messages.success(request, 'Team Successfully created!!')
-            # on user side, but on admin site
             return redirect('/sign_in')
     else:
         form = Sign_up()
