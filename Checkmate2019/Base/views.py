@@ -21,6 +21,9 @@ def sign_up(request):
         form = Sign_up(request.POST)
         if form.is_valid():
             team_name = form.cleaned_data.get('team_name')
+            # Next 2 lines are for Checking if the team_name has already been taken. This can be improved by using AJAX request (Frontend part)
+            if Team.objects.filter(team_name=team_name).exists():
+                return HttpResponse("Sorry the Team Name has already been taken. Please try with some other team name")
             password = form.cleaned_data.get('password')
             id1 = form.cleaned_data.get('id1')
             id2 = form.cleaned_data.get('id2')
