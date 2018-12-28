@@ -5,15 +5,14 @@ import re
 
 
 class Team(models.Model):
-    team_name = models.CharField(max_length=25, primary_key=True)
-    password = models.CharField(max_length=20)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     puzzles_solved = models.IntegerField(default=0)
     ip_address = models.CharField(null=True, max_length=20)
 
     def __str__(self):
-        return self.team_name
+        return self.user.username
 
 
 class Member(models.Model):
@@ -24,4 +23,4 @@ class Member(models.Model):
         Team, on_delete=models.CASCADE, blank=False, related_name="Member")
 
     def __str__(self):
-        return f"{self.team.team_name} : {self.id}"
+        return f"{self.id}"
