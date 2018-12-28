@@ -19,6 +19,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+    {% if messages %}
+    <ul class="messages">
+        {% for msg in messages %}
+        <li>
+            <div class="alert alert-{{msg.level_tag}}" role="alert">
+                {{msg.message}}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">CHECKMATE 2019</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
