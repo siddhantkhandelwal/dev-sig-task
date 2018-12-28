@@ -7,13 +7,11 @@ from django.http import HttpResponse
 from django.contrib import messages
 from ipware import get_client_ip
 from django.contrib.auth.models import User
-# from django.core.mail import send_mail can be used if we want to send mail to the players. we just need to create the emailaddress from
-# id and the documentation for this can be found at https://docs.djangoproject.com/en/2.1/topics/forms/ under the section : Field Data
 
 
 def index(request):
     if not request.user.is_authenticated:
-        #The url endpoint below needs to be updated after the game is made. 
+        #The url endpoint below needs to be updated after the game is made.
         return render(request, "Base/index.html", {})
     return render(request, "Base/index.html", {})
 
@@ -27,17 +25,18 @@ def sign_up(request):
             if User.objects.filter(username=team_name).exists():
                 return HttpResponse("Sorry the Team Name has already been taken. Please try with some other team name")
             password = form.cleaned_data.get('password')
-            user = User.objects.create_user(username=team_name, password=password)
+            user = User.objects.create_user(
+                username=team_name, password=password)
             user.save()
             id1 = form.cleaned_data.get('id1')
             id2 = form.cleaned_data.get('id2')
             ip = get_client_ip(request)
-            team = Team(user = user,
+            team = Team(user=user,
                         ip_address=ip, score=0, puzzles_solved=0, rank=0)
             team.save()
             member1 = Member(id=id1, team=team)
             member1.save()
-            if id2 :
+            if id2:
                 member2 = Member(id=id2, team=team)
                 member2.save()
             messages.success(request, 'Team Successfully created!!')
@@ -58,7 +57,7 @@ def sign_in(request):
             if user:
                 login(request, user)
                 messages.success(request, 'Successfully logged in .')
-                # Base:game needs to be updated after the game is completed.
+                # Base/index written below needs to be updated after the game is completed.
                 return render(request, 'Base/index.html')
             else:
                 messages.error(
@@ -79,6 +78,5 @@ def sign_out(request):
 
 @login_required
 def leaderboard(request):
-    # Needs to be reviewed . It is not functioning properly
-    Leaderboard = Team.objects.filter(rank <= 10)
-    return render(request, 'Base/leaderboard.html', {'range': range(1, 11), 'Leaderboard': Leaderboard})
+    Leaderboard = Team.objects.order_by('rank')[:9]
+    return render(request, 'Base/leaderboard.html', {'Leaderboard': Leaderboard})

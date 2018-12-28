@@ -5,9 +5,10 @@ Leaderboard
 {% endblock %}
 
 {% block body %}
-<ul>
-{% for a in {{range}} %}
-<l1>{{a}} : {{Leaderboard[0]}}</l1>
-{% endfor %}
-</ul>
+<ol>
+    {% for a in Leaderboard %}
+    <li>{{a}}</li>
+    <br>
+    {% endfor %}
+</ol>
 {% endblock %}
