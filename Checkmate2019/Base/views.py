@@ -78,5 +78,7 @@ def sign_out(request):
 
 @login_required
 def leaderboard(request):
-    Leaderboard = Team.objects.order_by('rank')[:9]
+    leaderboard = Team.objects.order_by('rank')[:9]
+    Leaderboard = enumerate([[team.user.username, team.score]
+                             for team in leaderboard], 1)
     return render(request, 'Base/leaderboard.html', {'Leaderboard': Leaderboard})
