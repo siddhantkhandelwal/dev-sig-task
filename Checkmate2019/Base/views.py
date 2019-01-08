@@ -35,9 +35,11 @@ def sign_up(request):
                         ip_address=ip, score=0, puzzles_solved=0, rank=0)
             team.save()
             member1 = Member(id=id1, team=team)
+            check_existence(request, id1) #If this bits id is registered with a team that has only one person, that team will be deleted. Otherwise nothing happens.
             member1.save()
             if id2:
                 member2 = Member(id=id2, team=team)
+                check_existence(request, id2)
                 member2.save()
             messages.success(request, 'Team Successfully created!!')
             return redirect('/sign_in')
@@ -82,3 +84,17 @@ def leaderboard(request):
     Leaderboard = enumerate([[team.user.username, team.score]
                              for team in leaderboard], 1)
     return render(request, 'Base/leaderboard.html', {'Leaderboard': Leaderboard})
+
+
+#Checks if a member is in a particular team. If the member is already in a team that has just one member, the team is deleted. Otherwise nothing happens to the team.
+def check_existence(request, bitsid):
+    if Member.objects.filter(id=str(bitsid)).exists():
+        current_member = Member.objects.filter(id = str(bitsid))[0]
+        current_team = current_member.team
+        list_of_members = current_team.Member.all()
+        if len(list_of_members) == 2:
+            pass
+        else:
+            current_team.delete()
+    else:
+        pass
