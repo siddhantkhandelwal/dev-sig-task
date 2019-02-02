@@ -1,0 +1,61 @@
+*
+	{
+		margin: 0;
+		padding: 0;
+	}
+	body, html {
+  height: 100%;
+  margin: 0;
+}
+.wraper {
+	background-image: url('mariologin.jpg');
+	/*width: 100%;*/
+	height: 100%;
+	background-size: cover;
+	/*background-repeat: no-repeat;*/
+	/*overflow: hidden;*/
+	background-position: center;
+	/*top: 0;
+	left: 0;*/
+
+	}
+@font-face {
+   font-family: polygon;
+   src: url("polygon.ttf");
+   }
+.loginbox {
+	position: absolute;
+	top: 25%;
+	left: 40%;
+}
+h1 {
+	font-family: polygon;
+	margin-bottom: 20px;
+	font-size: 70px;
+	position: relative;
+	top: -50px;
+}
+input {
+	width: 250px;
+	height: 40px;
+	text-align: center;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	background-color: #c9ef77d1;
+}
+p {
+	font-family: polygon;
+	font-size: 35px;
+	color: white;
+    -webkit-text-stroke: 1.7px #2f4707;
+}
+input[type=submit] {
+	cursor: pointer;
+	margin-top: 30px;
+	font-family: polygon;
+	font-size: 30px;
+	background-color: #c9ef77d1;
+	}
+input[type=submit]:hover {
+	background-color: #e2a257;
+}
