@@ -431,6 +431,13 @@ function questionpopup() {
     });
 }
 // }});
+let resetpos=document.getElementsByClassName('resetpos')[0];
+function resetposition()
+{
+    document.location.reload();
+}
+
+resetpos.addEventListener('click',resetposition,false);
 
 cross.addEventListener('click', function bcd(event) {//close the pop-up
 ques.className = 'hideBox ';
