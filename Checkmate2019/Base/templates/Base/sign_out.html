@@ -3,7 +3,7 @@
 {% load static %}
 
 <head>
-    <title>Login Page</title>
+    <title>Logout Page</title>
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="{% static 'css/com.css' %}" rel="stylesheet">
@@ -25,12 +25,6 @@
             <form method="POST" action="/sign_out/">
                 {%csrf_token%}
                 <!--<div class = "heading"> REGISTER </div>-->
-                <br>
-                <br>
-                Team Name
-                <br>
-                <br>
-                <img src="{% static 'images/icon.png' %}" class="icon">
                 <br>
                 <br>
                 Administrator Password

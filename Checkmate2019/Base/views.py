@@ -56,7 +56,7 @@ def sign_up(request):
                 member2 = Member(id=id2, team=team)
                 check_existence(request, id2)
                 member2.save()
-            messages.success(request, 'Team Successfully created!!')
+            # messages.success(request, 'Team Successfully created!!')
             user = authenticate(
                 username=team_name, password=password)
             login(request, user)
