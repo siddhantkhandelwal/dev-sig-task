@@ -57,7 +57,10 @@ def sign_up(request):
                 check_existence(request, id2)
                 member2.save()
             messages.success(request, 'Team Successfully created!!')
-            return redirect('/sign_in')
+            user = authenticate(
+                username=team_name, password=password)
+            login(request, user)
+            return redirect('/game')
         else:
             form = Sign_up()
             return render(request, 'Base/sign_up.html')   
