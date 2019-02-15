@@ -259,6 +259,8 @@ function moveUp(e) {
                                 // console.log(data);
                                 
                                 questionpopup();
+                                
+                                
 
                             }
                             break jump_start;
@@ -479,6 +481,28 @@ function getQuestion(key){
     });
     return data;
 }
+
+//If the below time interval is made shorter, an error occurs - which affects the question text. DO NOT CHANGE THE TIME INTERVAL. I suggest calling the getScore function through an event listener instead.
+
+window.setInterval(getScore, 1000); //I'm updating score every 1000 milliseconds because I have no clue how event listeners work. Someone from front end please un-idiotify this code.
+function getScore(){
+    var data = $.ajax( {
+        type: 'GET',     //I had written POST here by mistake and it took me two fucking hours to figure out the bug javascript is evil I hate it.
+        url: '/display_score/',
+        data: {
+            'questionKey': 1
+        },
+        success: function(data) {
+            var obj = JSON.parse;
+            var x = data.score;  
+            document.getElementById('score').innerHTML = x;
+                     
+        }
+        
+    });
+    return data;
+}
+
 
 
 // function post(path, params, method) {

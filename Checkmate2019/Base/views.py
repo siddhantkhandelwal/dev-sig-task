@@ -127,13 +127,27 @@ def check_answer(request):
             else:
                 current_team.score = current_score + question.score_increment
                 current_team.questions_answered.add(question)
-                current_team.save()
+                current_team.save()        
         else:
             pass
         return HttpResponse(status=204) #This means that the server has successfully processed the request and is not going to return any data.
     else:
         return HttpResponse("You weren't supposed to be here you know")
 
+def display_score(request):
+    current_user = request.user
+    current_team = Team.objects.get(user = current_user)
+    score = current_team.score
+    if request.method == "POST":
+        data = {
+            'score':score
+        }
+        return JsonResponse(data)
+    else:
+        data = {
+            'score':score
+        }
+        return JsonResponse(data)
 
 @login_required
 def sign_out(request):
