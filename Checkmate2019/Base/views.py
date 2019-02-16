@@ -31,7 +31,6 @@ def sign_up(request):
             password = request.POST.get('password')
             user = User.objects.create_user(
                 username=team_name, password=password)
-            user.save()
             id1 = request.POST.get('id1')
             id2 = request.POST.get('id2')
             val = validators.RegexValidator(re.compile('^201[5-8]{1}[0-9A-Z]{4}[0-9]{4}P$'),
@@ -48,6 +47,7 @@ def sign_up(request):
                     request, 'Enter your valid BITS ID')
                 return render(request, 'Base/sign_up.html')
             ip = get_client_ip(request)
+            user.save()
             team = Team(user=user,
                         ip_address=ip, score=0, puzzles_solved=0, rank=0)
             team.save()
