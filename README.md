@@ -14,7 +14,7 @@
 <li>Run the server using the following command : <br>
  <code>python3 manage.py runserver</code></li>
 <li>If you want to have a database with pre-populated questions and an admin account run the following command : <br>
-<code>python manage.py loaddata populate.json</code></li>
+<code>python3 manage.py loaddata populate.json</code></li>
 <li>To start with the main game, go to the following url in your browser : <br>
 <code>http://localhost:8000/game</code></li>
 </ol>
