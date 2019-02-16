@@ -11,6 +11,13 @@
         }
     },
     {
+        "model": "Base.Team",
+        "pk": 1,
+        "fields":{
+            "user": "1"
+        }
+    },
+    {
         "model": "Base.Question",
         "pk": 1,
         "fields": {
