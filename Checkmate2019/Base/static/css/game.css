@@ -13,7 +13,7 @@ body {
 #game{
     margin: 0px;
     position: absolute;
-    /* height: 100vh; */
+    height: 100vh;
     left: 0px;
     top: 0vh;
 }
@@ -23,5 +23,5 @@ body {
     overflow: hidden;
     height: 100vh;
     /*height: 480px; */
-    /* width: 3360px; */
+    /* width: 6720px; */
 }

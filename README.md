@@ -13,6 +13,8 @@
  <code>python3 manage.py makemigrations && python3 manage.py migrate</code></li>
 <li>Run the server using the following command : <br>
  <code>python3 manage.py runserver</code></li>
+<li>If you want to have a database with pre-populated questions and an admin account run the following command : <br>
+<code>python3 manage.py loaddata populate.json</code></li>
 <li>To start with the main game, go to the following url in your browser : <br>
 <code>http://localhost:8000/game</code></li>
 </ol>
@@ -24,4 +26,5 @@ Here are the steps for using global packages :<br>
 First confirm if you have python-3 and pip installed . If you have these installed then use <code>cd..</code> twice and use the command
 <code>pip3 install -r requirements.txt</code> . This will 
 install the required packages. Type the command <code>cd Checkmate2019/Checkmate2019</code> . Now you can continue from step 4 
-written for ubuntu.</p>
+written for ubuntu.</p><br>
+<p>If you want to access the admin account,  go to <code>http://localhost:8000/admin</code> . The username is "admin" and password is "admin". </p>

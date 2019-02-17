@@ -67,6 +67,7 @@ table {
 	border: 10px solid #99e6e6;
 	display: flex;
 	animation: drop .5s ease-in;
+	z-index: 50000;
 }
 .Shadow {
 	border: .7vh solid #29a3a3;

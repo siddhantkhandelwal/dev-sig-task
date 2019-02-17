@@ -1,0 +1,200 @@
+[   
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "pbkdf2_sha256$120000$Iqk3OGrrcydx$m1p2NtTQguVVM74WkWIJr7b7A/t+hx2LnpyERlA6Doc=",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true
+        }
+    },
+    {
+        "model": "Base.Team",
+        "pk": 1,
+        "fields":{
+            "user": "1"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 1,
+        "fields": {
+            "question_text": "Test Question 1",
+            "answer": "1",
+            "score_increment": "1"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 2,
+        "fields": {
+            "question_text": "Test Question 2",
+            "answer": "2",
+            "score_increment": "2"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 3,
+        "fields": {
+            "question_text": "Test Question 3",
+            "answer": "3",
+            "score_increment": "3"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 4,
+        "fields": {
+            "question_text": "Test Question 4",
+            "answer": "4",
+            "score_increment": "4"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 5,
+        "fields": {
+            "question_text": "Test Question 5",
+            "answer": "5",
+            "score_increment": "5"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 6,
+        "fields": {
+            "question_text": "Test Question 6",
+            "answer": "6",
+            "score_increment": "6"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 7,
+        "fields": {
+            "question_text": "Test Question 7",
+            "answer": "7",
+            "score_increment": "7"
+        }
+    },
+        {
+        "model": "Base.Question",
+        "pk": 8,
+        "fields": {
+            "question_text": "Test Question 8",
+            "answer": "8",
+            "score_increment": "8"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 9,
+        "fields": {
+            "question_text": "Test Question 9",
+            "answer": "9",
+            "score_increment": "9"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 10,
+        "fields": {
+            "question_text": "Test Question 10",
+            "answer": "10",
+            "score_increment": "10"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 11,
+        "fields": {
+            "question_text": "Test Question 11",
+            "answer": "11",
+            "score_increment": "11"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 12,
+        "fields": {
+            "question_text": "Test Question 12",
+            "answer": "12",
+            "score_increment": "12"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 13,
+        "fields": {
+            "question_text": "Test Question 13",
+            "answer": "13",
+            "score_increment": "13"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 14,
+        "fields": {
+            "question_text": "Test Question 14",
+            "answer": "14",
+            "score_increment": "14"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 15,
+        "fields": {
+            "question_text": "Test Question 15",
+            "answer": "15",
+            "score_increment": "15"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 16,
+        "fields": {
+            "question_text": "Test Question 16",
+            "answer": "16",
+            "score_increment": "16"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 17,
+        "fields": {
+            "question_text": "Test Question 17",
+            "answer": "17",
+            "score_increment": "17"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 18,
+        "fields": {
+            "question_text": "Test Question 18",
+            "answer": "18",
+            "score_increment": "18"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 19,
+        "fields": {
+            "question_text": "Test Question 19",
+            "answer": "19",
+            "score_increment": "19"
+        }
+    },
+    {
+        "model": "Base.Question",
+        "pk": 20,
+        "fields": {
+            "question_text": "Test Question 20",
+            "answer": "20",
+            "score_increment": "20"
+        }
+    }
+]
