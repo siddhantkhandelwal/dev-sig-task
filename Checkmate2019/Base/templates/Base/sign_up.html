@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+{%load static%}
+
+<head>
+	<title>Register Page</title>
+	<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">  
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/com.css' %}">
+</head>
+<body background="{% static 'images/bg.jpg' %}">
+
+	{# Load the tag library #}
+    {% load bootstrap3 %}
+    
+    {# Load CSS and JavaScript #}
+    
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+	<div class = "wrapper">
+				<img src = "{% static 'images/flag2.jpg' %}" class = "item flag">
+		<div class = "item">
+            <form method = "POST" action = "/sign_up/">
+                {%csrf_token%}
+				<br>
+				<br>
+				Team Name 
+				<br>
+				<br>
+				<img src="{% static 'images/icon.png' %}" class = "icon">
+				 <input type = "text" name = "teamname" required>
+				<br>
+				<br>
+				
+                ID - 1
+                <br>
+                <br>
+                <img src="{% static 'images/icon.png' %}" class = "icon">
+				<input type = "text" name = "id1" required>
+				<br>
+				<br>
+                ID - 2
+                <br>
+                <br>
+                <img src="{% static 'images/icon.png' %}" class = "icon">
+				<input type = "text" name = "id2">
+				<br>
+				<br>
+				Password
+				<br>
+				<br>
+				<img src="{% static 'images/icon.png' %}"class = "icon">
+				<input type = "Password" name = "password" required>
+				<br>
+                <br>
+                
+				<button type="submit" name="Register">
+ 			 		Register
+				</button>
+			</form>
+		</div>
+		<img src="{% static 'images/castle1.jpg' %}" class="item castle">
+	</div>
+	<a href="{% url 'sign_in' %}">Login</a>
+
+</body>
+</html>

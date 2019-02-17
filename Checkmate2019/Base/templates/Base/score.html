@@ -1,0 +1,18 @@
+{% extends "Base/base.html" %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block title %}
+Score
+{% endblock %}
+
+{% block body %}
+<form action="/score/" method="post" style="padding:10px" action="/">
+    {% csrf_token %}
+    <input type="number" value="score" name="score">
+    <input type="submit" value="Submit" onclick="document.forms[0].submit();return false;">
+</form>
+{% endblock %}

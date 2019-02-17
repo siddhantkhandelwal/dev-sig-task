@@ -1,0 +1,98 @@
+
+body {
+    margin: 0%;
+    background-color: lightblue;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.fixed-top{
+    position: fixed;
+    height: 10%;
+}
+.team-head{
+    position: fixed;
+    left:40%;
+    top:0.5%;
+}
+.team-display{
+    position: relative;
+}
+.score-head{
+    position: fixed;
+    right:1.2%;
+    top:0.5%;
+}
+.score-display{
+    position: relative;
+}
+.time-head{
+    position: fixed;
+    top:1%;
+}
+.time-display{
+    position: relative;
+}
+#mainNav.fixed-top {
+  width: 100%;
+}
+.navbar-brand,.guide {
+  font-family: 'Press Start 2P','Kaushan Script', Arial, sans-serif, cursive;
+}
+
+
+.links{
+    position: fixed;
+    top:11%;
+}
+a:link{
+    color:#000000 !important;
+}
+a:hover{
+    color: #CE6D18 !important;
+}
+
+
+#game{
+    margin: 0px;
+    position: absolute;
+    left: 0px;
+    top: 0vh;
+}
+#game svg{
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100vh;
+}
+.fixed-top{
+    position: fixed;
+    height: 10%;
+}
+.team-head{
+    position: fixed;
+    left:40%;
+    top:0.5%;
+}
+.team-display{
+    position: fixed;
+    top:5%;
+    left: 40%;
+}
+.score-head{
+    position: fixed;
+    right:1.2%;
+    top:0.5%;
+}
+.score-display{
+    position: fixed;
+    top:5%;
+    right: 1%;
+}
+#mainNav.fixed-top {
+  width: 100%;
+}
+.navbar-brand {
+  color: #44422A;
+  font-family: 'Press Start 2P','Kaushan Script', Arial, sans-serif, cursive;
+}

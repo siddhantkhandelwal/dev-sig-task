@@ -1,0 +1,116 @@
+html{
+	font-family: 'Orbitron', sans-serif;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 4vh;
+	background: url("./pics/bg.jpg");
+}
+
+html,body{
+	margin: 0;
+}
+
+.wrapper{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+
+
+.item{
+	box-sizing: border-box;
+	color: white;
+	text-align: center;
+	min-height: 10vh;
+	flex: 0 1 50%;
+	border-bottom: 2px solid #eeeeee;
+	height: 95vh;
+}
+
+
+
+.flag{
+	max-width: 20vw;
+	max-height: 95vh;
+
+}
+
+.castle{
+	max-height: 40vh;
+	max-width: 27vw;
+	align-self: flex-end;
+}
+
+.heading{
+	font-size: 1.2em;
+}
+
+input{
+	color: white;
+	outline: none;
+	box-sizing: border-box;
+	padding: 1vh;
+	border: none;
+	width: 30vw;
+	background: transparent;
+	font-family: 'Special Elite', cursive;
+	font-size: 1em;
+	border-bottom: 2px solid white;
+}
+
+.icon{
+	height: 5vh;
+	width: 5vh;
+}
+
+button{
+	padding: 10px;
+	font-size: 1em;
+	font-family: 'Special Elite', cursive;
+	border-radius: 5px;
+	cursor: pointer;
+	background: white;
+
+}
+
+button:hover{
+	background: black;
+	background: linear-gradient(grey,black);
+	color: white;
+}
+a{
+	font-family: Arial;
+	color: white;
+	font-size: 20px;
+	margin-left: 90vw;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover{
+	color:red;
+}
+
+.alert{
+	margin-left:135px;
+	margin-bottom:0px;
+	z-index: 2;
+	color:white;
+	font-size: 2vh;
+	background: transparent;
+	
+}
+
+.close{
+	z-index: 2;
+	background: transparent;
+	color:white;
+	border:none;
+	font-size: 3vh;
+}
+
+.close:hover{
+	background:transparent;
+}

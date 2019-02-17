@@ -1,0 +1,30 @@
+{% extends "Base/base.html" %}
+
+{% block title %}
+Leaderboard
+{% endblock %}
+
+{% block body %}
+<ul>
+    <div class="container">
+        <h3><u>
+                <div class="row">
+                    <div class="col-md-4">Rank</div>
+                    <div class="col-md-4">Team Name</div>
+                    <div class="col-md-4">Score</div>
+                </div>
+            </u></h3>
+        <br>
+        {% for a, b in Leaderboard %}
+        <h4>
+            <div class="row">
+                <div class="col-md-4">{{a}}</div>
+                <div class="col-md-4">{{b.0}}</div>
+                <div class="col-md-4">{{b.1}}</div>
+            </div>
+        </h4>
+        {% endfor %}
+    </div>
+</ul>
+
+{% endblock %}

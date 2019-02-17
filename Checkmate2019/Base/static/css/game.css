@@ -1,0 +1,27 @@
+body {
+    margin: 0%;
+    background-color: lightblue;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#top-line {
+    position: fixed;
+    bottom: 85vh;
+    width: 8000%;
+    background-color: lightblue;        
+}
+#game{
+    margin: 0px;
+    position: absolute;
+    /* height: 100vh; */
+    left: 0px;
+    top: 0vh;
+}
+#game svg{
+    position: fixed;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100vh;
+    /*height: 480px; */
+    /* width: 3360px; */
+}

@@ -1,0 +1,8 @@
+*.pyc
+__pycache__
+env
+00*.py
+
+# pycharm settings
+*.xml
+*.iml
