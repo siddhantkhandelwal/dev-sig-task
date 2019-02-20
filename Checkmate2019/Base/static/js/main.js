@@ -262,7 +262,7 @@ function moveUp(e) {
                         {   
                             flag = 1;
                             transformSvgElement(mario.element,mario.left,rest_top[ii].bottom);
-                            if (rest_top[ii].element.id == 'CoinBlock'){
+                            if (rest_top[ii].element.id == 'CoinBlock' ){ //&& rest_top[ii].element.style.display != none     to be written for diabling the coin block
                                 // questionpopup();
                                 var key = rest_top[ii].element.getAttribute('key');
                                 console.log(key);
@@ -528,10 +528,19 @@ function getQuestion(key){
 
 //If the below time interval is made shorter, an error occurs - which affects the question text. DO NOT CHANGE THE TIME INTERVAL. I suggest calling the getScore function through an event listener instead.
 
-window.setInterval(getScore, 3000); //I'm updating score every 1000 milliseconds because I have no clue how event listeners work. Someone from front end please un-idiotify this code.
+ window.setInterval(getScore, 3000); //I'm updating score every 1000 milliseconds because I have no clue how event listeners work. Someone from front end please un-idiotify this code.
+
+var press_submit = document.getElementById('submit1');
+
+press_submit.addEventListener('click', function closepopup(event){
+    ques.className = 'hideBox ';
+    bgrd.className = 'hideBox ';
+    $('.answerTextField').val('');
+});
+
 function getScore(){
     var data = $.ajax( {
-        type: 'GET',     //I had written POST here by mistake and it took me two fucking hours to figure out the bug javascript is evil I hate it.
+        type: 'GET',     //I had written POST here by mistake and it took me two fucking hours to figure out the bug javascript is love I hate it.
         url: '/display_score/',
         data: {
             'questionKey': 1
@@ -540,8 +549,38 @@ function getScore(){
             var obj = JSON.parse;
             var x = data.score;  
             document.getElementById('score').innerHTML = x;
+            
+            
+            
                      
         }
+        
+    });
+    return data;
+};
+
+
+
+window.setInterval(getCorrectQuestions, 3000)
+function getCorrectQuestions(){
+    var data = $.ajax( {
+        type: 'GET',     //I had written POST here by mistake and it took me two fucking hours to figure out the bug javascript is evil I hate it.
+        url: '/get_question_list',
+        data: {},
+        success: function(data) {
+            var obj = JSON.parse;
+            var x = data.correct_list;
+            console.log(x);
+            for(var p = 0 ; p < x.length ; p ++){
+                var demo = x[p];
+                console.log(demo);
+
+            var questionBlock = $('[key=' +  demo + ']');
+            console.log(questionBlock);
+            questionBlock.css('display', 'none');
+            }
+        }
+        
         
     });
     return data;

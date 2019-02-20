@@ -60,6 +60,7 @@ a:hover{
     top: 0vh;
 }
 #game svg{
+    height: 100vh;
     position: absolute;
     box-sizing: border-box;
     overflow: hidden;

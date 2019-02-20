@@ -138,6 +138,7 @@ label {
 	/*opacity: .6;*/
 	margin: 2px;
 }
+
 	@keyframes jump{
 		0% {top: 40vh; }
 		50%{top:20vh; transition-timing-function: ease-in;}
