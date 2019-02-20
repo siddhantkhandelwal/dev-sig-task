@@ -1,3 +1,0 @@
-django
-django-ipware
-django-bootstrap3
