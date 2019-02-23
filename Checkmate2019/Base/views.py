@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 import re
 from django.core import validators
 from django.core.exceptions import ValidationError
+from datetime import datetime
 
 current_question_key = 0
 negative_marking_factor = 5
@@ -18,8 +19,8 @@ negative_marking_factor = 5
 def index(request):
     if not request.user.is_authenticated:
         #The url endpoint below needs to be updated after the game is made.
-        return render(request, "Base/index.html", {})
-    return render(request, "Base/index.html", {})
+        return redirect('/instructions')
+    return redirect('/game')
 
 def get_question_list(request):
     current_team = Team.objects.get(user = request.user)
@@ -91,6 +92,9 @@ def sign_up(request):
             user = authenticate(
                 username=team_name, password=password)
             login(request, user)
+            current_team = Team.objects.get(user=user)
+            current_team.logged_in = 1
+            current_team.save()
             return redirect('/game')
         else:
             form = Sign_up()
@@ -106,8 +110,11 @@ def sign_in(request):
             password = request.POST.get('password')
             user = authenticate(
                 username=team_name, password=password)
-            if user:
+            current_team = Team.objects.get(user=user)
+            if user and not current_team.logged_in:
                 login(request, user)
+                current_team.logged_in = 1
+                current_team.save()
                 messages.success(request, 'Successfully logged in .')
                 # Base/index written below needs to be updated after the game is completed.
                 return redirect('/game')
@@ -189,6 +196,9 @@ def sign_out(request):
     if request.method=='POST':
         password = request.POST.get('password')
         if password=="#" or password=="admin" : # Todo : replace # by a custom administrator password of choice 
+            current_user = Team.objects.get(user=request.user)
+            current_user.logged_in = 0
+            current_user.save()
             logout(request)
             messages.success(request, "You have been successfully logged out. We hope that you had a great time solving the puzzles. ")
             return redirect('/game')
@@ -224,17 +234,6 @@ def check_existence(request, bitsid):
     else:
         pass
 
-@login_required
-def score(request):
-    if request.method=="POST":
-        score = request.POST['score']
-        user = Team.objects.get(user=request.user)
-        user.score += int(score)
-        user.save()
-        return redirect("/score") # needs to be updated after frontend is done
-    else:
-        #remove this part later....Currently its here only for a visual interface
-        return render(request, 'Base/score.html', {})
 
 #in case the user logs out of the system or the system crashes this functions comes into picture
 @login_required
@@ -250,3 +249,26 @@ def position(request):
         return redirect("/position")
     else :
         return render(request, 'Base/position.html', {})
+
+def instructions(request):
+    return render(request, 'Base/instructions.html')
+
+def time(request):
+    try :
+        FMT = "%H:%M:%S"
+        timeout = datetime(year=2019, month=2, day=23, hour=22, minute=00, second=0, microsecond=0)
+        time_now = datetime.now()
+        # time_now = str(time_now.hour) + ":" + str(time_now.minute) + ":" + str(time_now.second)
+        # time = datetime.strptime(timeout, FMT) - datetime.strptime(time_now, FMT)
+        timediff = timeout - time_now
+        timediff = str(timediff)
+        # print(timediff)
+        timeleft = int("0" + timediff[0])*60 + int(timediff[2:4])
+        time = {
+            'time': timeleft
+        }
+        return JsonResponse(time)
+    except Exception:
+        return JsonResponse({
+            'time' : 0
+        })

@@ -107,10 +107,11 @@ table {
 	/*flex-wrap: wrap;*/
 	overflow-wrap: normal;
 	margin: 0 1vw;
+	max-height: 60%;
 	overflow-y: scroll;
 }
 p {
-	display: none;
+	/* display: none; */
 }
 .answerBox {
 	order: 2;

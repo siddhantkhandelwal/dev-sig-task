@@ -59,50 +59,8 @@ function getValueGroup(element, property) {
     }
 }
 
-// function getValuePipes(element, property) {
-//     if (property == 'height') {
-//         return parseFloat(element.getAttribute('height')) * 100 / 480;
-//     }
-//     if (property == 'width') {
-//         return parseFloat(element.getAttribute('width')) * 100 / 6720;
-//     }
-//     if (property == 'x') {
-//         return (getValue(document.getElementById('Pipes'), 'x', '%') + parseFloat(element.getAttribute('x'))) * 100 / 6720;
-//     }
-//     if (property == 'y') {
-//         return (480 - getValue(document.getElementById('Pipes'), 'y', 'vh') - parseFloat(element.getAttribute('y'))) * 100 / 480;
-//     }
-// }
-// function getValueGround(element,property){
-//     if (property == 'height') {
-//         return parseFloat(element.getAttribute('height')) * 100 / 480;
-//     }
-//     if (property == 'width') {
-//         return parseFloat(element.getAttribute('width')) * 100 / 6720;
-//     }
-//     if (property == 'x') {
-//         return parseFloat(element.getAttribute('x')) * 100 / 6720;
-//     }
-//     if (property == 'y') {
-//         return (480 - getValue(document.getElementById('Ground'), 'y', 'vh') - parseFloat(element.getAttribute('y'))) * 100 / 480;
-//     }
-// }
 var rest_left = [];
 var rest_top = [];
-
-// var ground_svg = document.getElementsByClassName("groundb");
-// for(var ii = 0; ii < ground_svg.length; ++ii){
-//     var temp = {
-//         "element": ground_svg[ii],
-//         "width": getValueGround(ground_svg[ii], 'width'),
-//         "height": getValueGround(ground_svg[ii], 'height'),
-//         "left": getValueGround(ground_svg[ii], 'x'),
-//         "top": getValueGround(ground_svg[ii], 'y'),
-//     };
-//     temp.right = temp.left + temp.width;
-//     temp.bottom = temp.top - temp.height;
-//     rest_left.push(temp);
-// }
 
 var blocks_svg = document.getElementsByClassName("blocks");
 for (var ii = 0; ii < blocks_svg.length; ++ii) {
@@ -130,20 +88,6 @@ for (var ii = 0; ii < groups_svg.length; ++ii) {
     temp.bottom = temp.top - temp.height;
     rest_left.push(temp);
 }
-// var pipes_svg = document.getElementsByClassName("pipes");
-// for (var ii = 0; ii < pipes_svg.length; ++ii) {
-//     var temp = {
-//         "element": pipes_svg[ii],
-//         "left": getValuePipes(pipes_svg[ii], 'x'),
-//         "top": getValuePipes(pipes_svg[ii], 'y'),
-//         "width": getValuePipes(pipes_svg[ii], 'width'),
-//         "height": getValuePipes(pipes_svg[ii], 'height')
-//     };
-//     temp.right = temp.left + temp.width;
-//     temp.bottom = temp.top - temp.height;
-//     rest_left.push(temp);
-// }
-
 rest_left.sort(function(a, b) {     // left to right then top to bottom
     if(a.left == b.left){return b.top - a.top;}
     return a.left - b.left;
@@ -217,14 +161,21 @@ var key_left = false;
 var key_right = false;
 var jumping = false;
 
-
+var marioright = document.getElementById("marioright");
+var marioleft = document.getElementById("marioleft");
 
 /***************************************************************/
 function handleKeyDown(event) {
-    if (event.keyCode == 37)
+    if (event.keyCode == 37){
         key_left = true;
-    else if (event.keyCode == 39)
+        marioleft.classList.remove("hidden");
+        marioright.classList.add("hidden");
+    }
+    else if (event.keyCode == 39){
         key_right = true;
+        marioleft.classList.add("hidden");
+        marioright.classList.remove("hidden");
+    }
     moveSide();
 }
 
@@ -511,29 +462,29 @@ window.addEventListener("keydown", closeqn);
 function questionpopup() {
         bgrd.className += ' modalBackground';
         ques.className += ' questionBox';
-        function typeEffect(element, speed) {
-        var text = $(element).text();
-        $(element).html('');
-        i = 0;
-        var timer = setInterval(function() {
-                        if (i < text.length) {
-                            $(element).append(text.charAt(i));
-                            i++;
-                        } else {
-                            clearInterval(timer);
-                        }
-                    }, speed);
-        }
+    //     function typeEffect(element, speed) {
+    //     var text = $(element).text();
+    //     $(element).html('');
+    //     i = 0;
+    //     var timer = setInterval(function() {
+    //                     if (i < text.length) {
+    //                         $(element).append(text.charAt(i));
+    //                         i++;
+    //                     } else {
+    //                         clearInterval(timer);
+    //                     }
+    //                 }, speed);
+    //     }
 
-    $( document ).ready(function() {
-        var speed = 30;
-        var delay = $('h1').text().length * speed + speed;
-        typeEffect($('h1'), speed);
-        setTimeout(function(){
-        $('p').css('display', 'inline-block');
-        typeEffect($('p'), speed);
-        }, delay);
-        });
+    // $( document ).ready(function() {
+    //     var speed = 0.1;
+    //     var delay = $('h1').text().length * speed + speed;
+    //     typeEffect($('h1'), speed);
+    //     setTimeout(function(){
+    //     $('p').css('display', 'inline-block');
+    //     typeEffect($('p'), speed);
+    //     }, delay);
+    //     });
 }
 
 var press_submit = document.getElementById('submit1');
@@ -546,6 +497,27 @@ press_submit.addEventListener('click', function closepopup(event){
 cross.addEventListener('click', function bcd(event) {//close the pop-up
     ques.className = 'hideBox ';
     bgrd.className = 'hideBox ';
+});
+
+$('#answerForm').submit(function(event) {
+    // console.log(  $('.answerTextField').val());
+    window.setTimeout(function() {
+    var scoreContainer = document.getElementById('score');
+    var currentScore = scoreContainer.innerHTML;
+    getScore();
+    window.setTimeout(() => {
+        var newScore = scoreContainer.innerHTML;
+        if( currentScore > newScore) {
+            alert('Answer is wrong');
+        }
+        else if( currentScore < newScore) {
+            alert("Congrats! You've answered correctly");
+        }
+    },200);
+    // console.log(newScore);
+    // console.log(currentScore);
+    getCorrectQuestions();
+    }, 3000);
 });
 
 function getQuestion(key){   
@@ -565,7 +537,8 @@ function getQuestion(key){
             var obj = JSON.parse;
             var x = data.question_text;
             // console.log(x);
-            document.getElementById('p1').innerHTML = x;
+            document.getElementById('question').innerHTML = x;
+            // console.log(document.getElementById('question').innerHTML);
                      
         }
         
@@ -575,7 +548,7 @@ function getQuestion(key){
 
 //If the below time interval is made shorter, an error occurs - which affects the question text. DO NOT CHANGE THE TIME INTERVAL. I suggest calling the getScore function through an event listener instead.
 
-window.setInterval(getScore, 3000); //I'm updating score every 1000 milliseconds because I have no clue how event listeners work. Someone from front end please un-idiotify this code.
+// window.setInterval(getScore, 3000); //I'm updating score every 1000 milliseconds because I have no clue how event listeners work. Someone from front end please un-idiotify this code.
 function getScore(){
     var data = $.ajax( {
         type: 'GET',     //I had written POST here by mistake and it took me two fucking hours to figure out the bug javascript is evil I hate it.
@@ -586,15 +559,33 @@ function getScore(){
         success: function(data) {
             var obj = JSON.parse;
             var x = data.score;  
-            document.getElementById('score').innerHTML = x;
-                     
+            document.getElementById('score').innerHTML = x;                     
         }
         
     });
     return data;
 }
+var GlobalTime;
+    var data = $.ajax( {
+        type: 'GET',    
+        url: '/time/',
+        data: {},
+        success: function(data) {
+            var obj = JSON.parse;
+            GlobalTime = data.time;
+            // console.log(GlobalTime);
+            document.getElementById('timeleft').innerHTML = GlobalTime + " min";     
+        }
+        
+    });
 
-window.setInterval(getCorrectQuestions, 3000)
+window.setInterval(function reducetime(){
+    // console.log(GlobalTime);
+    GlobalTime = GlobalTime - 1;
+    document.getElementById('timeleft').innerHTML = GlobalTime + " min";
+},60000);
+
+// window.setInterval(getCorrectQuestions, 3000)
 function getCorrectQuestions(){
     var data = $.ajax( {
         type: 'GET',     
@@ -618,6 +609,9 @@ function getCorrectQuestions(){
     });
     return data;
 }
+
+getCorrectQuestions();
+getScore();
 
 
 function closeqn(e){

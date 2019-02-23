@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html>
 <head>
 	<title>Instructions Page</title>
@@ -26,20 +29,23 @@
 				padding-right: 30vh;
 				line-height: 2em;
 				color: white;
-				font-family: 'Press Start 2P', cursive;
+				font-family: Verdana;
 				flex: 0 1 100%;
-				font-size: 3vh;
+				font-size: 4vh;
 			}
 			.item:last-child{
 				text-align: right;
-				font-size: 4vh;
+				font-size: 5vh;
 			}
+		
 			.heading{
 				text-align: center;
-				font-size: 4vh;
+				font-size: 5vh;
+				font-weight: 900;
 			}
 			a{
 				color: white;
+				font-weight: 900;
 				text-decoration: none;
 			}
 			a:hover{
@@ -57,12 +63,16 @@
 		<div class = "item">
 			<ol>
 				<li>Use the left and right arrow keys for sideways movement.</li>
-				<li>Use the up arrow key for jumping.</li>
-				<li>Answer the questions that appear on hitting the question mark blocks to increase your score.</li>
+				<li>Use the up-arrow key for jumping.</li>
+				<li>Answer questions that appear on hitting the question mark blocks. Beware negative marking for incorrect answers.</li>
+				<li>Click the cross icon located in the top right corner of the question box to close the question, or alternatively, press the escape key.</li>
+				<li>Click on RESET to reset Mario’s position to the start.</li>
+				<li>Wait 3 seconds after game reset for the scores and question blocks to get updated to requisite states.</li>
+				<li>In case of logout, please contact volunteer.</li>
 			</ol>
 		</div>
 		<div class="item">
-			<a href="main.html">Start Game</a>
+			<a href="/game">Start Game</a>
 		</div>
 	</div>
 

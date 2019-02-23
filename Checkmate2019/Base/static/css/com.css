@@ -111,12 +111,13 @@ a:hover{
 .alert{
 	box-sizing: border-box;
 	max-height: 4vh;
-	margin-left:135px;
+	margin-left:20vw;
 	margin-bottom:0px;
 	z-index: 2;
 	color:white;
 	font-size: 2vh;
 	background: transparent;
+	max-width: 65vw;
 	
 }
 
