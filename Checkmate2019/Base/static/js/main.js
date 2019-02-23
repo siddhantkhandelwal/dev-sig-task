@@ -587,13 +587,31 @@ function getScore(){
         success: function(data) {
             var obj = JSON.parse;
             var x = data.score;  
-            document.getElementById('score').innerHTML = x;
-                     
+            document.getElementById('score').innerHTML = x;                     
         }
         
     });
     return data;
 }
+var GlobalTime;
+    var data = $.ajax( {
+        type: 'GET',    
+        url: '/time/',
+        data: {},
+        success: function(data) {
+            var obj = JSON.parse;
+            GlobalTime = data.time;
+            console.log(GlobalTime);
+            document.getElementById('timeleft').innerHTML = GlobalTime;     
+        }
+        
+    });
+
+window.setInterval(function reducetime(){
+    console.log(GlobalTime);
+    GlobalTime = GlobalTime - 1;
+    document.getElementById('timeleft').innerHTML = GlobalTime;
+},60000);
 
 window.setInterval(getCorrectQuestions, 3000)
 function getCorrectQuestions(){

@@ -33,6 +33,9 @@ body {
 .time-display{
     position: relative;
 }
+#timeleft {
+    fill: white;
+}
 #mainNav.fixed-top {
   width: 100%;
   z-index: 10;

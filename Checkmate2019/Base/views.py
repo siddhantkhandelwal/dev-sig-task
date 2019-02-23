@@ -254,16 +254,21 @@ def instructions(request):
     return render(request, 'Base/instructions.html')
 
 def time(request):
-    FMT = "%H:%M:%S"
-    timeout = datetime(year=2019, month=2, day=23, hour=22, minute=0, second=0, microsecond=0)
-    time_now = datetime.now()
-    # time_now = str(time_now.hour) + ":" + str(time_now.minute) + ":" + str(time_now.second)
-    # time = datetime.strptime(timeout, FMT) - datetime.strptime(time_now, FMT)
-    timediff = timeout - time_now
-    timediff = str(timediff)
-    print(timediff)
-    timeleft = int(timediff[:2])*60 + int(timediff[3:5])
-    time = {
-        'time': timeleft
-    }
-    return JsonResponse(time)
+    try :
+        FMT = "%H:%M:%S"
+        timeout = datetime(year=2019, month=2, day=23, hour=22, minute=00, second=0, microsecond=0)
+        time_now = datetime.now()
+        # time_now = str(time_now.hour) + ":" + str(time_now.minute) + ":" + str(time_now.second)
+        # time = datetime.strptime(timeout, FMT) - datetime.strptime(time_now, FMT)
+        timediff = timeout - time_now
+        timediff = str(timediff)
+        # print(timediff)
+        timeleft = int("0" + timediff[0])*60 + int(timediff[2:4])
+        time = {
+            'time': timeleft
+        }
+        return JsonResponse(time)
+    except Exception:
+        return JsonResponse({
+            'time' : 0
+        })
