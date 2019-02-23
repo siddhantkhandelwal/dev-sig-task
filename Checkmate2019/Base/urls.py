@@ -13,4 +13,5 @@ urlpatterns = [
     path("display_score/", views.display_score, name="display_score"),
     path("get_question_list", views.get_question_list, name="get_question_list"),
     path("instructions/", views.instructions, name="instructions"),
+    path("time/", views.time, name="time")
 ]

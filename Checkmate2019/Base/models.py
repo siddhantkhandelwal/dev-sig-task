@@ -6,6 +6,7 @@ import re
 
 class Team(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    logged_in = models.BooleanField(default=0)
     score = models.IntegerField(default=0)
     rank = models.IntegerField(default=0)
     puzzles_solved = models.IntegerField(default=0)
