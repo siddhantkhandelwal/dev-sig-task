@@ -602,7 +602,7 @@ var GlobalTime;
             var obj = JSON.parse;
             GlobalTime = data.time;
             console.log(GlobalTime);
-            document.getElementById('timeleft').innerHTML = GlobalTime;     
+            document.getElementById('timeleft').innerHTML = GlobalTime + " min";     
         }
         
     });
@@ -610,7 +610,7 @@ var GlobalTime;
 window.setInterval(function reducetime(){
     console.log(GlobalTime);
     GlobalTime = GlobalTime - 1;
-    document.getElementById('timeleft').innerHTML = GlobalTime;
+    document.getElementById('timeleft').innerHTML = GlobalTime + " min";
 },60000);
 
 window.setInterval(getCorrectQuestions, 3000)
