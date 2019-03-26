@@ -100,7 +100,7 @@ table {
 	padding: 1.5vh;
 	text-align: left;
 	color: white; 
-	font-size: 25px;
+	font-size: 30px;
 	border: 1px solid red;
 	order: 1;
 	flex-grow:1 ;/*occupy all the empty space*/
@@ -123,13 +123,13 @@ p {
 .submit{
 	order: 3;
 	text-align: center;
-	padding: .2vh;
+	padding: .3vh;
 }
 .submitButton {
 	background-color: black;
 	color: white;
 	font-family: "VT323",Arial,Sans-serif;
-	font-size: 20px;
+	font-size: 23px;
 }
 label {
 	color: red;
